@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Deal Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Investment Deal Analyzer</h1>
+            <p class="subtitle">AI-powered multi-agent analysis for investment opportunities</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section id="upload-section" class="card">
+                <h2>Upload Document</h2>
+                <p class="info-text">Upload your investment deal document for comprehensive analysis. Supported formats: TXT, PDF, DOC, DOCX, MD</p>
+                
+                <form id="upload-form">
+                    <div class="file-upload-area" id="drop-zone">
+                        <input type="file" id="file-input" accept=".txt,.pdf,.doc,.docx,.md" hidden>
+                        <div class="upload-content">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p class="upload-text">Drag and drop your file here, or <span class="browse-link">browse</span></p>
+                            <p class="file-name" id="file-name"></p>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="analyze-btn" class="btn btn-primary" disabled>
+                        <span class="btn-text">Analyze Deal</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Loading Section -->
+            <section id="loading-section" class="card" style="display: none;">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <h2>Analyzing Investment Deal</h2>
+                    <p id="loading-status">Initializing analysis pipeline...</p>
+                    <div class="progress-steps">
+                        <div class="step" id="step-real-estate">
+                            <span class="step-icon">⏳</span>
+                            <span class="step-text">Real Estate Analysis</span>
+                        </div>
+                        <div class="step" id="step-financial">
+                            <span class="step-icon">⏳</span>
+                            <span class="step-text">Financial Modeling</span>
+                        </div>
+                        <div class="step" id="step-market">
+                            <span class="step-icon">⏳</span>
+                            <span class="step-text">Market Analysis</span>
+                        </div>
+                        <div class="step" id="step-orchestrator">
+                            <span class="step-icon">⏳</span>
+                            <span class="step-text">Final Synthesis</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="card" style="display: none;">
+                <div class="results-header">
+                    <h2>Analysis Results</h2>
+                    <button id="download-all-btn" class="btn btn-secondary">Download All</button>
+                </div>
+
+                <!-- Real Estate Analysis Report -->
+                <div class="report-card">
+                    <div class="report-header real-estate-header">
+                        <h3>🏢 Real Estate Analysis</h3>
+                        <button class="download-btn" data-report="real_estate">Download</button>
+                    </div>
+                    <div class="report-content" id="real-estate-content"></div>
+                </div>
+
+                <!-- Financial Modeling Report -->
+                <div class="report-card">
+                    <div class="report-header financial-header">
+                        <h3>💰 Financial Modeling & Valuation</h3>
+                        <button class="download-btn" data-report="financial_modeling">Download</button>
+                    </div>
+                    <div class="report-content" id="financial-content"></div>
+                </div>
+
+                <!-- Market Analysis Report -->
+                <div class="report-card">
+                    <div class="report-header market-header">
+                        <h3>📊 Market & Location Analysis</h3>
+                        <button class="download-btn" data-report="market_analysis">Download</button>
+                    </div>
+                    <div class="report-content" id="market-content"></div>
+                </div>
+
+                <!-- Orchestrator Report -->
+                <div class="report-card orchestrator-card">
+                    <div class="report-header orchestrator-header">
+                        <h3>🎯 Final Recommendation & Synthesis</h3>
+                        <button class="download-btn" data-report="orchestrator">Download</button>
+                    </div>
+                    <div class="report-content" id="orchestrator-content"></div>
+                </div>
+
+                <div class="actions">
+                    <button id="new-analysis-btn" class="btn btn-primary">Analyze Another Deal</button>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section id="error-section" class="card error-card" style="display: none;">
+                <h2>Error</h2>
+                <p id="error-message"></p>
+                <button id="retry-btn" class="btn btn-primary">Try Again</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Investment Deal Analyzer — Multi-Agent Analysis Pipeline</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
