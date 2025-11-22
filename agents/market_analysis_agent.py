@@ -10,8 +10,12 @@ from openai import OpenAI
 )
 class MarketAnalysisAgent(A2AServer):
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self, url=None):
+        # Get port from environment or use default
+        port = int(os.environ.get("PORT", 5007))
+        if url is None:
+            url = f"http://localhost:{port}"
+        super().__init__(url=url)
         self.app = Flask(__name__)
         
         # Initialize OpenAI client
@@ -96,6 +100,14 @@ class MarketAnalysisAgent(A2AServer):
    - Environmental risks
    - Gentrification or decline risks
 
+IMPORTANT: Return your response as plain text only. Do NOT use markdown formatting such as:
+- No markdown headers (###, ##, #)
+- No horizontal rules (---)
+- No markdown bold (**text**) or italic (*text*)
+- No code blocks or backticks
+- Use plain text with line breaks and simple formatting only
+- Use numbered lists and bullet points with plain text (1., 2., -)
+
 Provide comprehensive market analysis with data-driven insights and clear risk/opportunity assessments."""
         
         try:
@@ -129,8 +141,9 @@ Provide comprehensive market analysis with data-driven insights and clear risk/o
 
 # Run the server
 if __name__ == "__main__":
-    agent = MarketAnalysisAgent()
     port = int(os.environ.get("PORT", 5007))
+    url = f"http://localhost:{port}"
+    agent = MarketAnalysisAgent(url=url)
     print(f"Starting Market Analysis Agent on port {port}")
     print(f"Health check available at: http://localhost:{port}/health")
     run_server(agent, host="0.0.0.0", port=port)

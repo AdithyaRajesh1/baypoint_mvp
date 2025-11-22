@@ -17,6 +17,7 @@ const loadingStatus = document.getElementById('loading-status');
 const realEstateContent = document.getElementById('real-estate-content');
 const financialContent = document.getElementById('financial-content');
 const marketContent = document.getElementById('market-content');
+const legalContent = document.getElementById('legal-content');
 const orchestratorContent = document.getElementById('orchestrator-content');
 const newAnalysisBtn = document.getElementById('new-analysis-btn');
 const retryBtn = document.getElementById('retry-btn');
@@ -186,6 +187,11 @@ async function handleSubmit(e) {
         await delay(2000);
         updateProgressStep('step-market', 'completed');
         
+        updateLoadingStatus('Analyzing legal and compliance...');
+        updateProgressStep('step-legal', 'active');
+        await delay(2000);
+        updateProgressStep('step-legal', 'completed');
+        
         updateLoadingStatus('Synthesizing final recommendation...');
         updateProgressStep('step-orchestrator', 'active');
         await delay(2000);
@@ -219,19 +225,19 @@ function updateProgressStep(stepId, state) {
     
     const icon = step.querySelector('.step-icon');
     if (state === 'active') {
-        icon.textContent = '⏳';
+        icon.textContent = '...';
     } else if (state === 'completed') {
-        icon.textContent = '✅';
+        icon.textContent = 'OK';
     }
 }
 
 // Reset progress steps
 function resetProgressSteps() {
-    ['step-real-estate', 'step-financial', 'step-market', 'step-orchestrator'].forEach(stepId => {
+    ['step-real-estate', 'step-financial', 'step-market', 'step-legal', 'step-orchestrator'].forEach(stepId => {
         const step = document.getElementById(stepId);
         if (step) {
             step.className = 'step';
-            step.querySelector('.step-icon').textContent = '⏳';
+            step.querySelector('.step-icon').textContent = '...';
         }
     });
 }
@@ -241,6 +247,7 @@ function displayResults(result) {
     realEstateContent.textContent = result.real_estate_report || 'No real estate analysis available.';
     financialContent.textContent = result.financial_modeling_report || 'No financial modeling analysis available.';
     marketContent.textContent = result.market_analysis_report || 'No market analysis available.';
+    legalContent.textContent = result.legal_report || 'No legal analysis available.';
     orchestratorContent.textContent = result.orchestrator_report || 'No orchestrator report available.';
     
     // Show results, hide loading
@@ -279,6 +286,7 @@ function downloadReport(reportType) {
         'real_estate': 'real_estate_report',
         'financial_modeling': 'financial_modeling_report',
         'market_analysis': 'market_analysis_report',
+        'legal': 'legal_report',
         'orchestrator': 'orchestrator_report'
     };
     
@@ -306,7 +314,7 @@ function downloadReport(reportType) {
 function downloadAllReports() {
     if (!currentResults) return;
     
-    ['real_estate', 'financial_modeling', 'market_analysis', 'orchestrator'].forEach((type, index) => {
+    ['real_estate', 'financial_modeling', 'market_analysis', 'legal', 'orchestrator'].forEach((type, index) => {
         setTimeout(() => downloadReport(type), index * 300);
     });
 }

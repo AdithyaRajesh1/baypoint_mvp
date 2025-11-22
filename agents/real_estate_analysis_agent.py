@@ -10,8 +10,12 @@ from openai import OpenAI
 )
 class RealEstateAnalysisAgent(A2AServer):
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self, url=None):
+        # Get port from environment or use default
+        port = int(os.environ.get("PORT", 5005))
+        if url is None:
+            url = f"http://localhost:{port}"
+        super().__init__(url=url)
         self.app = Flask(__name__)
         
         # Initialize OpenAI client
@@ -70,7 +74,15 @@ class RealEstateAnalysisAgent(A2AServer):
    - Supply and demand dynamics
    - Market growth trends
 
-Provide a comprehensive analysis in a structured format with clear sections."""
+IMPORTANT: Return your response as plain text only. Do NOT use markdown formatting such as:
+- No markdown headers (###, ##, #)
+- No horizontal rules (---)
+- No markdown bold (**text**) or italic (*text*)
+- No code blocks or backticks
+- Use plain text with line breaks and simple formatting only
+- Use numbered lists and bullet points with plain text (1., 2., -)
+
+Provide a comprehensive analysis in a structured format with clear sections using plain text only."""
         
         try:
             response = self.client.chat.completions.create(
@@ -103,8 +115,9 @@ Provide a comprehensive analysis in a structured format with clear sections."""
 
 # Run the server
 if __name__ == "__main__":
-    agent = RealEstateAnalysisAgent()
     port = int(os.environ.get("PORT", 5005))
+    url = f"http://localhost:{port}"
+    agent = RealEstateAnalysisAgent(url=url)
     print(f"Starting Real Estate Analysis Agent on port {port}")
     print(f"Health check available at: http://localhost:{port}/health")
     run_server(agent, host="0.0.0.0", port=port)

@@ -6,7 +6,7 @@ echo ""
 
 # Check if .env file exists
 if [ ! -f .env ]; then
-    echo "⚠️  Warning: .env file not found"
+    echo "Warning: .env file not found"
     echo "   Create a .env file with: OPENAI_API_KEY=your_key_here"
     echo ""
 fi

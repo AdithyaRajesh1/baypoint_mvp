@@ -49,6 +49,24 @@ Analyzes market conditions and location:
 python agents/market_analysis_agent.py
 ```
 
+### 4. Legal Analysis Agent (Port 5008)
+**File**: `legal_agent.py`
+
+Analyzes legal, regulatory, and compliance aspects:
+- Legal structure and entity types
+- Regulatory compliance (SEC, state, local)
+- Zoning and land use
+- Title and ownership issues
+- Environmental regulations
+- Contract and lease review
+- Tax and structuring
+- Due diligence legal issues
+
+**Usage**:
+```bash
+python agents/legal_agent.py
+```
+
 ## Setup
 
 1. **Install Dependencies**:
@@ -74,6 +92,7 @@ These agents can be integrated into your main `investment_pipeline.py` by:
    network.add("real_estate_agent", "http://localhost:5005")
    network.add("financial_modeling_agent", "http://localhost:5006")
    network.add("market_analysis_agent", "http://localhost:5007")
+   network.add("legal_agent", "http://localhost:5008")
    ```
 
 2. Routing real estate deals to these specialized agents
@@ -86,6 +105,7 @@ Each agent provides a health check endpoint:
 - Real Estate Agent: `http://localhost:5005/health`
 - Financial Modeling Agent: `http://localhost:5006/health`
 - Market Analysis Agent: `http://localhost:5007/health`
+- Legal Agent: `http://localhost:5008/health`
 
 ## Notes
 
@@ -93,4 +113,5 @@ Each agent provides a health check endpoint:
 - Agents are designed to work with real estate deal documents
 - All agents follow the python_a2a framework pattern
 - Agents can be deployed separately or together
+- The pipeline now includes 4 specialized agents plus an orchestrator for comprehensive analysis
 

@@ -10,8 +10,12 @@ from openai import OpenAI
 )
 class FinancialModelingAgent(A2AServer):
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self, url=None):
+        # Get port from environment or use default
+        port = int(os.environ.get("PORT", 5006))
+        if url is None:
+            url = f"http://localhost:{port}"
+        super().__init__(url=url)
         self.app = Flask(__name__)
         
         # Initialize OpenAI client
@@ -83,6 +87,14 @@ class FinancialModelingAgent(A2AServer):
    - Stress testing scenarios
    - Monte Carlo simulations (conceptual)
 
+IMPORTANT: Return your response as plain text only. Do NOT use markdown formatting such as:
+- No markdown headers (###, ##, #)
+- No horizontal rules (---)
+- No markdown bold (**text**) or italic (*text*)
+- No code blocks or backticks
+- Use plain text with line breaks and simple formatting only
+- Use numbered lists and bullet points with plain text (1., 2., -)
+
 Provide detailed financial analysis with calculations, assumptions, and clear explanations of methodologies used."""
         
         try:
@@ -116,8 +128,9 @@ Provide detailed financial analysis with calculations, assumptions, and clear ex
 
 # Run the server
 if __name__ == "__main__":
-    agent = FinancialModelingAgent()
     port = int(os.environ.get("PORT", 5006))
+    url = f"http://localhost:{port}"
+    agent = FinancialModelingAgent(url=url)
     print(f"Starting Financial Modeling Agent on port {port}")
     print(f"Health check available at: http://localhost:{port}/health")
     run_server(agent, host="0.0.0.0", port=port)

@@ -9,15 +9,15 @@
 <body>
     <div class="container">
         <header>
-            <h1>Investment Deal Analyzer</h1>
-            <p class="subtitle">AI-powered multi-agent analysis for investment opportunities</p>
+            <h1>Multi-Agent Investment Deal Analyzer (MVP)</h1>
+            <p class="subtitle">AI-powered multi-agent pipeline for Bay Point Advisors</p>
         </header>
 
         <main>
             <!-- Upload Section -->
             <section id="upload-section" class="card">
                 <h2>Upload Document</h2>
-                <p class="info-text">Upload your investment deal document for comprehensive analysis. Supported formats: TXT, PDF, DOC, DOCX, MD</p>
+                <p class="info-text">Upload document (example deal provided). Supported formats: TXT, PDF, DOC, DOCX, MD. Note: all deal documents are stored locally on your device.</p>
                 
                 <form id="upload-form">
                     <div class="file-upload-area" id="drop-zone">
@@ -47,19 +47,23 @@
                     <p id="loading-status">Initializing analysis pipeline...</p>
                     <div class="progress-steps">
                         <div class="step" id="step-real-estate">
-                            <span class="step-icon">⏳</span>
+                            <span class="step-icon">...</span>
                             <span class="step-text">Real Estate Analysis</span>
                         </div>
                         <div class="step" id="step-financial">
-                            <span class="step-icon">⏳</span>
+                            <span class="step-icon">...</span>
                             <span class="step-text">Financial Modeling</span>
                         </div>
                         <div class="step" id="step-market">
-                            <span class="step-icon">⏳</span>
+                            <span class="step-icon">...</span>
                             <span class="step-text">Market Analysis</span>
                         </div>
+                        <div class="step" id="step-legal">
+                            <span class="step-icon">...</span>
+                            <span class="step-text">Legal Analysis</span>
+                        </div>
                         <div class="step" id="step-orchestrator">
-                            <span class="step-icon">⏳</span>
+                            <span class="step-icon">...</span>
                             <span class="step-text">Final Synthesis</span>
                         </div>
                     </div>
@@ -76,7 +80,7 @@
                 <!-- Real Estate Analysis Report -->
                 <div class="report-card">
                     <div class="report-header real-estate-header">
-                        <h3>🏢 Real Estate Analysis</h3>
+                        <h3>Real Estate Analysis</h3>
                         <button class="download-btn" data-report="real_estate">Download</button>
                     </div>
                     <div class="report-content" id="real-estate-content"></div>
@@ -85,7 +89,7 @@
                 <!-- Financial Modeling Report -->
                 <div class="report-card">
                     <div class="report-header financial-header">
-                        <h3>💰 Financial Modeling & Valuation</h3>
+                        <h3>Financial Modeling & Valuation</h3>
                         <button class="download-btn" data-report="financial_modeling">Download</button>
                     </div>
                     <div class="report-content" id="financial-content"></div>
@@ -94,16 +98,25 @@
                 <!-- Market Analysis Report -->
                 <div class="report-card">
                     <div class="report-header market-header">
-                        <h3>📊 Market & Location Analysis</h3>
+                        <h3>Market & Location Analysis</h3>
                         <button class="download-btn" data-report="market_analysis">Download</button>
                     </div>
                     <div class="report-content" id="market-content"></div>
                 </div>
 
+                <!-- Legal Analysis Report -->
+                <div class="report-card">
+                    <div class="report-header legal-header">
+                        <h3>Legal & Compliance Analysis</h3>
+                        <button class="download-btn" data-report="legal">Download</button>
+                    </div>
+                    <div class="report-content" id="legal-content"></div>
+                </div>
+
                 <!-- Orchestrator Report -->
                 <div class="report-card orchestrator-card">
                     <div class="report-header orchestrator-header">
-                        <h3>🎯 Final Recommendation & Synthesis</h3>
+                        <h3>Final Recommendation & Synthesis</h3>
                         <button class="download-btn" data-report="orchestrator">Download</button>
                     </div>
                     <div class="report-content" id="orchestrator-content"></div>

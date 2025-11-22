@@ -73,6 +73,7 @@ def analyze_deal():
         real_estate_path = os.path.join(app.config['REPORTS_FOLDER'], f"{report_id}_real_estate.txt")
         financial_path = os.path.join(app.config['REPORTS_FOLDER'], f"{report_id}_financial.txt")
         market_path = os.path.join(app.config['REPORTS_FOLDER'], f"{report_id}_market.txt")
+        legal_path = os.path.join(app.config['REPORTS_FOLDER'], f"{report_id}_legal.txt")
         orchestrator_path = os.path.join(app.config['REPORTS_FOLDER'], f"{report_id}_orchestrator.txt")
         
         # Write reports to files
@@ -85,6 +86,9 @@ def analyze_deal():
         with open(market_path, 'w') as f:
             f.write(results['market_analysis_report'])
         
+        with open(legal_path, 'w') as f:
+            f.write(results['legal_report'])
+        
         with open(orchestrator_path, 'w') as f:
             f.write(results['orchestrator_report'])
         
@@ -95,11 +99,13 @@ def analyze_deal():
             "real_estate_report": results['real_estate_report'],
             "financial_modeling_report": results['financial_modeling_report'],
             "market_analysis_report": results['market_analysis_report'],
+            "legal_report": results['legal_report'],
             "orchestrator_report": results['orchestrator_report'],
             "reports": {
                 "real_estate": f"/reports/{report_id}_real_estate.txt",
                 "financial": f"/reports/{report_id}_financial.txt",
                 "market": f"/reports/{report_id}_market.txt",
+                "legal": f"/reports/{report_id}_legal.txt",
                 "orchestrator": f"/reports/{report_id}_orchestrator.txt"
             }
         }), 200
@@ -121,8 +127,8 @@ def get_report(filename):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))  # Changed default to 5001 to avoid macOS AirPlay conflict
-    print(f"🚀 Starting Investment Deal Analysis Server on http://localhost:{port}")
-    print(f"📊 Health check: http://localhost:{port}/health")
-    print(f"📤 Analyze endpoint: http://localhost:{port}/analyze")
+    print(f"Starting Investment Deal Analysis Server on http://localhost:{port}")
+    print(f"Health check: http://localhost:{port}/health")
+    print(f"Analyze endpoint: http://localhost:{port}/analyze")
     app.run(host='0.0.0.0', port=port, debug=True)
 

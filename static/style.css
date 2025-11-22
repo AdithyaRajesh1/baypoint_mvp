@@ -242,8 +242,8 @@ header h1 {
 
 .progress-steps {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
     margin-top: 32px;
 }
 
@@ -365,6 +365,15 @@ header h1 {
 
 .market-header h3 {
     color: #0277BD;
+}
+
+.legal-header {
+    background: #FCE4EC;
+    border-bottom-color: #F8BBD0;
+}
+
+.legal-header h3 {
+    color: #C2185B;
 }
 
 .orchestrator-header {
