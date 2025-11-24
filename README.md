@@ -2,21 +2,6 @@
 
 A multi-agent pipeline application that analyzes investment deal documents and generates comprehensive reports on pros, cons, and final recommendations.
 
-## Features
-
-- **Web Interface**: Beautiful, modern frontend for easy file upload and result viewing
-- **File Upload**: Accepts investment deal documents in multiple formats (TXT, PDF, DOC, DOCX, MD)
-- **Drag & Drop**: Intuitive file upload with drag-and-drop support
-- **Multi-Agent Pipeline**: Uses specialized AI agents for:
-  - **Real Estate Analysis**: Property fundamentals, cap rates, NOI, operational metrics
-  - **Financial Modeling**: DCF analysis, IRR, cash flow projections, valuation
-  - **Market Analysis**: Location quality, market trends, comparable properties
-  - **Legal Analysis**: Regulatory compliance, zoning, title, legal risks
-  - **Orchestrator**: Synthesizes all analyses into a final recommendation
-- **Report Generation**: Generates five separate reports (one per agent) plus a final synthesis
-- **Flexible Architecture**: Can use external agent services or direct OpenAI calls
-- **Report Download**: Download individual reports or all reports at once
-
 ## Setup
 
 1. **Install Dependencies**:
